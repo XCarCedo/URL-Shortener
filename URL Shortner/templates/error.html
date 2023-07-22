@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Error</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .error-container {
+    text-align: center;
+  }
+
+  .error {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .error::before {
+    content: "\2717";
+    font-size: 80px;
+    color: #fff;
+    line-height: 150px;
+    text-align: center;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100">
+	<div class="error-container">
+	  <div class="error"></div>
+	</div>
+	<p class="mt-5">An error occurred. Please try again later.</p>
+	<form action="{{ url_for('home_page') }}" method="get">
+		<button class="btn btn-secondary">Go back</button>
+	</form>
+</div>
+{% endblock %}
