@@ -16,7 +16,7 @@
 	<div class="col-12">
 	  <form class="d-flex" action="{{ url_for('submit_url') }}" method="post">
 			<div class="form-group mr-2">
-			  <input id="url-input" type="text" class="form-control" name="form-control" id="form-control" placeholder="Your URL">
+			  <input id="url-input" type="text" class="form-control" name="url" placeholder="Your URL" required>
 			</div>
 			<button id="submit-button" type="submit" class="btn btn-primary">Shorten URL</button>
 	  </form>
