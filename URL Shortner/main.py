@@ -1,7 +1,8 @@
 from pathlib import Path
 
 from flask import Flask, render_template, request
-from models import db
+from models import db, URL
+from utils import generate_id
 
 DB_FILE = "main.db"
 
@@ -18,8 +19,12 @@ def home_page():
 def submit_url():
 	submitted_url = request.form.get("url")
 	if submitted_url:
+		link_id = generate_id()
+
+		db.session.add(URL(id = link_id, url=submitted_url))
+		db.session.commit()
 		
-		return render_template("success.html")
+		return render_template("success.html", shortend_url=f"{request.host_url}redirect?id={link_id}")
 	else:
 		return render_template("error.html", error_message="Invalid request payload, please try again.")
 
