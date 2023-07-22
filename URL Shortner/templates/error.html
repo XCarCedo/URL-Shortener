@@ -39,7 +39,7 @@
 	<div class="error-container">
 	  <div class="error"></div>
 	</div>
-	<p class="mt-5">An error occurred. Please try again later.</p>
+	<p class="mt-5">{{ error_message }}</p>
 	<form action="{{ url_for('home_page') }}" method="get">
 		<button class="btn btn-secondary">Go back</button>
 	</form>
