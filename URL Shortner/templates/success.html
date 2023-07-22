@@ -28,6 +28,12 @@
   window.onload = function() {
 	var successModal = new bootstrap.Modal(document.getElementById('successModal'));
 	successModal.show();
+
+	// Prevent clicks on the backdrop from dismissing the modal
+	var backdrop = document.querySelector('.modal-backdrop');
+	backdrop.addEventListener('click', function(event) {
+	  event.stopPropagation();
+	});
   };
 </script>
 {% endblock %}
