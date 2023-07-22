@@ -2,38 +2,47 @@
 
 {% block head %}
 <title>Success</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .tick-container {
+    text-align: center;
+  }
+
+  .tick {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  .tick::before {
+    content: "\2713";
+    font-size: 80px;
+    color: #fff;
+    line-height: 150px;
+    text-align: center;
+  }
+</style>
 {% endblock %}
 
 {% block body %}
-<div class="container">
-  <!-- Modal for the pop-up message -->
-  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-	<div class="modal-dialog modal-dialog-centered">
-	  <div class="modal-content">
-		<div class="modal-body">
-		  Your URL has been successfully created.
-		</div>
-		<div class="modal-footer">
-		<form action="{{ url_for('home_page') }}" method='get'>
-		  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-		</form>
-		</div>
-	  </div>
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100">
+	<div class="tick-container">
+	  <div class="tick"></div>
 	</div>
-  </div>
+	<div class="neon-tick"></div>
+	<p class="mt-5">Your URL has been successfully created.</p>
+	<form action="{{ url_for('home_page') }}" method="get">
+		<button class="btn btn-secondary">Go back</button>
+	</form>
 </div>
-
-<script>
-  // Show the modal on page load
-  window.onload = function() {
-	var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-	successModal.show();
-
-	// Prevent clicks on the backdrop from dismissing the modal
-	var backdrop = document.querySelector('.modal-backdrop');
-	backdrop.addEventListener('click', function(event) {
-	  event.stopPropagation();
-	});
-  };
-</script>
 {% endblock %}
