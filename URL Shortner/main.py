@@ -1,6 +1,14 @@
+from pathlib import Path
+
 from flask import Flask, render_template, request
+from models import db
+
+DB_FILE = "main.db"
 
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_FILE}"
+
+db.init_app(app)
 
 @app.route("/")
 def home_page():
@@ -16,4 +24,7 @@ def submit_url():
 		return render_template("error.html", error_message="Invalid request payload, please try again.")
 
 if __name__ == "__main__":
+	if not Path(f"instance/{DB_FILE}").exists():
+		with app.app_context():
+			db.create_all()
 	app.run(debug = True)
