@@ -8,7 +8,7 @@ def home_page():
 
 @app.route("/submit_url", methods=["POST"])
 def submit_url():
-	return "hey"
+	return render_template("success.html")
 
 if __name__ == "__main__":
 	app.run(debug = True)
